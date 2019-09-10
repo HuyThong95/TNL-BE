@@ -41,18 +41,22 @@ public class SignUpController {
                 signUpRequest.getPhoneNumber(),
                 passwordEncoder.encode(signUpRequest.getPassWord()) );
         Set<String> strRoles = signUpRequest.getRole();
+
         Set<Role> roles = new HashSet<>();
         strRoles.forEach(role -> {
             switch (role){
-                case "ADMIN":
-                    Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
-                            .orElseThrow(()-> new RuntimeException("Fail -> Cause: User Role not find."));
+                case "admin":
+                    Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN);
                     roles.add(adminRole);
                     break;
-                case "LANDLORD":
-                    Role landLordRole = roleRepository.findByName(RoleName.ROLE_LANDLORD)
-                            .orElseThrow(() -> new RuntimeException("Fail -> Cause: User Role not find."));
+                case "landlord":
+                    Role landLordRole = roleRepository.findByName(RoleName.ROLE_LANDLORD);
                     roles.add(landLordRole);
+                    break;
+
+                default:
+                    Role userRole = roleRepository.findByName(RoleName.ROLE_GUEST);
+                    roles.add(userRole);
 
             }
         });
