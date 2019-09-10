@@ -37,7 +37,6 @@ public class LandLord {
 
     @NotBlank
     @NaturalId
-    @Size(min = 10, max = 11)
     private String phoneNumber;
     @OneToMany(targetEntity = Apartment.class)
     private List<Apartment> apartments;
