@@ -29,7 +29,6 @@ public class SignUpForm {
 
     @NotBlank
     @NaturalId
-    @Size(min = 10, max = 11)
     private String phoneNumber;
 
     private Set<String> role;
